@@ -7,26 +7,6 @@
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/MIT
  */
-#gallery-modal .img-container {
-  width: 100%;
-  max-height: 90%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  text-align: center;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-#gallery-modal .img-container .img-wrapper {
-  max-height: 80%;
-  display: inline-block;
-  position: relative;
-}
-#gallery-modal .img-container .img-wrapper img {
-  max-height: 100%;
-  margin: auto;
-}
 #gallery-modal button {
   font-size: 100px;
   text-shadow: 0px 0px 5px #000;
@@ -40,6 +20,26 @@
 }
 #gallery-modal button:hover {
   opacity: 0.8;
+}
+#gallery-modal .img-container {
+  width: 100%;
+  max-height: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+#gallery-modal .img-wrapper {
+  max-height: 80%;
+  display: inline-block;
+  position: relative;
+}
+#gallery-modal .img-wrapper img {
+  max-height: 100%;
+  margin: auto;
 }
 #gallery-modal .btn-close {
   right: 10px;
