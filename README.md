@@ -32,12 +32,12 @@ A small, light, responsive Bootstrap Gallery
 2. code your gallery with markup like this
 
   ```html
-  <div class="gallery">
-    <a href="/path/to/img1.jpg">
-      <img src="/path/to/thumb1.jpg">
+  <div class="gallery row">
+    <a class="col-xs-6 col-sm-4" href="/path/to/img1.jpg">
+      <img src="/path/to/thumb1.jpg" alt="thumb1">
     </a>
-    <a href="/path/to/img2.jpg">
-      <img src="/path/to/thumb2.jpg">
+    <a class="col-xs-6 col-sm-4" href="/path/to/img2.jpg">
+      <img src="/path/to/thumb2.jpg" alt="thumb1">
     </a>
   </div>
   ```
