@@ -2,3 +2,100 @@ bootstrap-gallery
 =================
 
 A small, light, responsive Bootstrap Gallery
+
+## Demo
+
+* http://www.noxic-action.de/page/photography/
+
+
+## Installation
+
+* Download the latest release: [v0.0.1](https://github.com/iekadou/bootstrap-gallery/archive/0.0.1.zip)
+
+## Usage
+
+1. include `bootstrap-gallery.js` and `bootstrap-gallery.css`
+  
+  js:
+  ```html
+<script type="text/javascript" src="js/bootstrap-gallery.js"></script>
+  ```
+  css:
+  ```html
+<link rel="stylesheet" type="text/css" href="bootstrap-progressbar.min.css">
+  ```
+  or less:
+  ```html
+<link rel="stylesheet/less" type="text/css" href="bootstrap-progressbar.less">
+  ```
+
+2. code your gallery with markup like this
+
+  ```html
+  <div class="gallery">
+    <a href="/path/to/img1.jpg">
+      <img src="/path/to/thumb1.jpg">
+    </a>
+    <a href="/path/to/img2.jpg">
+      <img src="/path/to/thumb2.jpg">
+    </a>
+  </div>
+  ```
+
+3. activate the plugin on the gallery container
+  
+  ```javascript
+$('.gallery').bootstrapGallery();
+  ```
+
+## Settings
+
+### default values
+
+the default values represent the setup for Bootstrap 3 with Glyphicons
+
+  ```javascript
+BootstrapGallery.defaults = {
+  modalAttrs: {
+    "id": "gallery-modal",
+  	"class": "modal fade",
+  	"tabindex": "-1",
+  	"role": "dialog",
+  	"aria-hidden":"true"
+  },
+  containerAttrs: {
+    "class": "img-container"
+  },
+  wrapperAttrs: {
+    "class": "img-wrapper"
+  },
+	imgAttrs: {
+		"class": "img-responsive",
+		"src": "#"
+	},
+	closeBtnAttrs: {
+		"class": "btn-close glyphicon glyphicon-remove",
+		"aria-hidden": "true"
+	},
+	btnPrevAttrs: {
+		"class": "btn-prev glyphicon glyphicon-chevron-left"
+	},
+	btnNextAttrs: {
+		"class": "btn-next glyphicon glyphicon-chevron-right"
+	}
+};
+  ```
+  
+### FontAwesome
+
+  to use the FontAwesome Icons just activate your gallery as below:
+
+  ```javascript
+$('.gallery-overview').bootstrapGallery({
+  iconset: "fontawesome"
+});
+  ```
+
+## Copyright and license
+
+Copyright 2014 Jonas Braun under [MIT license](https://github.com/iekadou/bootstrap-gallery/blob/master/LICENSE).
