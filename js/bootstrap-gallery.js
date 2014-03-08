@@ -16,7 +16,11 @@
 
     var BootstrapGallery = function(element, options) {
         this.$gallery = $(element);
-        this.options = $.extend({}, BootstrapGallery.defaults, options);
+        this.options = $.extend({}, BootstrapGallery.defaults);
+        if (options.hasOwnProperty('iconset') && options.iconset == 'fontawesome') {
+            $.extend(this.options, BootstrapGallery.fontawesomeOptions);
+        }
+        $.extend(this.options, options);
         this.count = this.$gallery.children().length;
         this.index = 0;
 		if (BootstrapGallery.elements === undefined) {
@@ -60,13 +64,26 @@
 		wrapperAttrs: {
 			"class": "img-wrapper"
 		},
-		closeBtnAttrs: {
-			"class": "btn-close fa fa-times",
-			"aria-hidden": "true"
-		},
 		imgAttrs: {
 			"class": "img-responsive",
 			"src": "#"
+		},
+		closeBtnAttrs: {
+			"class": "btn-close glyphicon glyphicon-remove",
+			"aria-hidden": "true"
+		},
+		btnPrevAttrs: {
+			"class": "btn-prev glyphicon glyphicon-chevron-left"
+		},
+		btnNextAttrs: {
+			"class": "btn-next glyphicon glyphicon-chevron-right"
+		}
+	};
+
+    BootstrapGallery.fontawesomeOptions = {
+		closeBtnAttrs: {
+			"class": "btn-close fa fa-times",
+			"aria-hidden": "true"
 		},
 		btnPrevAttrs: {
 			"class": "btn-prev fa fa-angle-left"
@@ -74,7 +91,7 @@
 		btnNextAttrs: {
 			"class": "btn-next fa fa-angle-right"
 		}
-	};
+    };
 
     // BOOTSTRAPGALLERY METHODS
     // ========================
