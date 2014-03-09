@@ -41,6 +41,10 @@
             $('body').append(elements.$modal);
             this.elements = elements;
             BootstrapGallery.elements = elements;
+
+            this.registerKeys();
+            this.registerWindowResize();
+            this.registerTouches();
         } else {
             this.elements = BootstrapGallery.elements;
         }
@@ -77,7 +81,8 @@
         },
         btnNextAttrs: {
             "class": "btn-next glyphicon glyphicon-chevron-right"
-        }
+        },
+        swipeThreshold: 30
     };
 
     BootstrapGallery.fontawesomeOptions = {
@@ -96,33 +101,9 @@
     // BOOTSTRAPGALLERY METHODS
     // ========================
 
-    BootstrapGallery.prototype.registerThumbs = function () {
-        var elements = this.elements;
-        var self = this;
-        this.$gallery.children().each(function () {
-            $(this).off('click').on('click', function (e) {
-                e.preventDefault();
-                elements.$img.attr('src', $(this).attr("href"));
-                self.index = $(this).index();
-                elements.$modal.modal();
-
-                self.registerBtns();
-                self.registerKeys();
-                self.registerWindowResize();
-                setTimeout(function () {
-                    elements.$modal.focus();
-                }, 200);
-            });
-        });
-    };
-
     BootstrapGallery.prototype.registerBtns = function () {
         var elements = this.elements;
         var self = this;
-
-        function updateImg(index) {
-            elements.$img.attr("src", self.$gallery.children().get(index).attr("href"));
-        }
 
         elements.$btnNext.off('click').on('click', function (e) {
             e.preventDefault();
@@ -130,7 +111,7 @@
             if (self.index >= self.count) {
                 self.index = 0;
             }
-            updateImg(self.index);
+            self.updateImg(self.index);
         });
 
         elements.$btnPrev.off('click').on('click', function (e) {
@@ -139,7 +120,7 @@
             if (self.index < 0) {
                 self.index = self.count - 1;
             }
-            updateImg(self.index);
+            self.updateImg(self.index);
         });
 
         elements.$container.off('click').on('click', function (e) {
@@ -176,6 +157,42 @@
         });
     };
 
+    BootstrapGallery.prototype.registerThumbs = function () {
+        var elements = this.elements;
+        var self = this;
+        this.$gallery.children().each(function () {
+            $(this).off('click').on('click', function (e) {
+                e.preventDefault();
+                elements.$img.attr('src', $(this).attr("href"));
+                self.index = $(this).index();
+                elements.$modal.modal();
+                self.registerBtns();
+
+                setTimeout(function () {
+                    elements.$modal.focus();
+                }, 200);
+            });
+        });
+    };
+
+    BootstrapGallery.prototype.registerTouches = function () {
+        var self = this;
+        self.clientXStart = 0;
+        self.clientXEnd = 0;
+        self.elements.$modal.on('touchstart',function (e) {
+            self.clientXStart = self.clientXEnd = e.originalEvent.touches[0].clientX;
+        }).on('touchmove',function (e) {
+            e.preventDefault();
+            self.clientXEnd = e.originalEvent.touches[0].clientX;
+        }).on('touchend', function (e) {
+            if (self.clientXStart > self.clientXEnd + self.options.swipeThreshold) {
+                self.elements.$btnPrev.click();
+            } else if (self.clientXStart < self.clientXEnd - self.options.swipeThreshold) {
+                self.elements.$btnNext.click();
+            }
+        });
+    };
+
     BootstrapGallery.prototype.registerWindowResize = function () {
         var wrapper = this.elements.wrapper;
         $(window).resize(function () {
@@ -183,6 +200,10 @@
             wrapper.offsetHeight; // force browser to rerender modal.
             wrapper.style.display = "inline-block";
         });
+    };
+
+    BootstrapGallery.prototype.updateImg = function (index) {
+        this.elements.$img.attr("src", this.$gallery.children().get(index).getAttribute('href'));
     };
 
     // BOOTSTRAPGALLERY PLUGIN DEFINITION
