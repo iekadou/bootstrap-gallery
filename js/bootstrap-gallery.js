@@ -186,9 +186,9 @@
             self.clientXEnd = e.originalEvent.touches[0].clientX;
         }).on('touchend', function (e) {
             if (self.clientXStart > self.clientXEnd + self.options.swipeThreshold) {
-                self.elements.$btnPrev.click();
-            } else if (self.clientXStart < self.clientXEnd - self.options.swipeThreshold) {
                 self.elements.$btnNext.click();
+            } else if (self.clientXStart < self.clientXEnd - self.options.swipeThreshold) {
+                self.elements.$btnPrev.click();
             }
         });
     };
