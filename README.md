@@ -10,7 +10,7 @@ A small, light, responsive Bootstrap Gallery
 
 ## Installation
 
-* Download the latest release: [v0.0.1](https://github.com/iekadou/bootstrap-gallery/archive/0.0.1.zip)
+* Download the latest release: [v0.0.2](https://github.com/iekadou/bootstrap-gallery/archive/0.0.2.zip)
 
 ## Usage
 
@@ -82,7 +82,8 @@ BootstrapGallery.defaults = {
 	},
 	btnNextAttrs: {
 		"class": "btn-next glyphicon glyphicon-chevron-right"
-	}
+	},
+	swipeThreshold: 30
 };
   ```
   
