@@ -14,7 +14,7 @@
     // BOOTSTRAPGALLERY CLASS DEFINITION
     // =================================
 
-    var BootstrapGallery = function(element, options) {
+    var BootstrapGallery = function (element, options) {
         this.$gallery = $(element);
         this.options = $.extend({}, BootstrapGallery.defaults);
         if (options.hasOwnProperty('iconset') && options.iconset == 'fontawesome') {
@@ -23,7 +23,7 @@
         $.extend(this.options, options);
         this.count = this.$gallery.children().length;
         this.index = 0;
-		if (BootstrapGallery.elements === undefined) {
+        if (BootstrapGallery.elements === undefined) {
             var elements = {
                 "$modal": $("<div/>").attr(this.options.modalAttrs),
                 "$container": $("<div/>").attr(this.options.containerAttrs),
@@ -35,13 +35,13 @@
             };
             elements["wrapper"] = elements.$wrapper[0];
 
-			elements.$wrapper.append(elements.$closeBtn, elements.$btnPrev, elements.$btnNext, elements.$img);
-			elements.$container.append(elements.$wrapper);
-			elements.$modal.append(elements.$container);
-			$('body').append(elements.$modal);
+            elements.$wrapper.append(elements.$closeBtn, elements.$btnPrev, elements.$btnNext, elements.$img);
+            elements.$container.append(elements.$wrapper);
+            elements.$modal.append(elements.$container);
+            $('body').append(elements.$modal);
             this.elements = elements;
             BootstrapGallery.elements = elements;
-		} else {
+        } else {
             this.elements = BootstrapGallery.elements;
         }
         this.registerThumbs();
@@ -50,57 +50,57 @@
     // BOOTSTRAPGALLERY DEFAULT OPTIONS
     // ================================
 
-	BootstrapGallery.defaults = {
-	    modalAttrs: {
-	        "id": "gallery-modal",
-			"class": "modal fade",
-			"tabindex": "-1",
-			"role": "dialog",
-			"aria-hidden":"true"
-	    },
-		containerAttrs: {
-			"class": "img-container"
-		},
-		wrapperAttrs: {
-			"class": "img-wrapper"
-		},
-		imgAttrs: {
-			"class": "img-responsive",
-			"src": "#"
-		},
-		closeBtnAttrs: {
-			"class": "btn-close glyphicon glyphicon-remove",
-			"aria-hidden": "true"
-		},
-		btnPrevAttrs: {
-			"class": "btn-prev glyphicon glyphicon-chevron-left"
-		},
-		btnNextAttrs: {
-			"class": "btn-next glyphicon glyphicon-chevron-right"
-		}
-	};
+    BootstrapGallery.defaults = {
+        modalAttrs: {
+            "id": "gallery-modal",
+            "class": "modal fade",
+            "tabindex": "-1",
+            "role": "dialog",
+            "aria-hidden": "true"
+        },
+        containerAttrs: {
+            "class": "img-container"
+        },
+        wrapperAttrs: {
+            "class": "img-wrapper"
+        },
+        imgAttrs: {
+            "class": "img-responsive",
+            "src": "#"
+        },
+        closeBtnAttrs: {
+            "class": "btn-close glyphicon glyphicon-remove",
+            "aria-hidden": "true"
+        },
+        btnPrevAttrs: {
+            "class": "btn-prev glyphicon glyphicon-chevron-left"
+        },
+        btnNextAttrs: {
+            "class": "btn-next glyphicon glyphicon-chevron-right"
+        }
+    };
 
     BootstrapGallery.fontawesomeOptions = {
-		closeBtnAttrs: {
-			"class": "btn-close fa fa-times",
-			"aria-hidden": "true"
-		},
-		btnPrevAttrs: {
-			"class": "btn-prev fa fa-angle-left"
-		},
-		btnNextAttrs: {
-			"class": "btn-next fa fa-angle-right"
-		}
+        closeBtnAttrs: {
+            "class": "btn-close fa fa-times",
+            "aria-hidden": "true"
+        },
+        btnPrevAttrs: {
+            "class": "btn-prev fa fa-angle-left"
+        },
+        btnNextAttrs: {
+            "class": "btn-next fa fa-angle-right"
+        }
     };
 
     // BOOTSTRAPGALLERY METHODS
     // ========================
 
-    BootstrapGallery.prototype.registerThumbs = function() {
+    BootstrapGallery.prototype.registerThumbs = function () {
         var elements = this.elements;
         var self = this;
-        this.$gallery.children().each(function() {
-            $(this).off('click').on('click', function(e) {
+        this.$gallery.children().each(function () {
+            $(this).off('click').on('click', function (e) {
                 e.preventDefault();
                 elements.$img.attr('src', $(this).attr("href"));
                 self.index = $(this).index();
@@ -109,20 +109,22 @@
                 self.registerBtns();
                 self.registerKeys();
                 self.registerWindowResize();
-                setTimeout( function() { elements.$modal.focus(); }, 200 );
+                setTimeout(function () {
+                    elements.$modal.focus();
+                }, 200);
             });
         });
     };
 
-    BootstrapGallery.prototype.registerBtns = function() {
+    BootstrapGallery.prototype.registerBtns = function () {
         var elements = this.elements;
         var self = this;
 
         function updateImg(index) {
-            elements.$img.attr("src", self.$gallery.children(":eq("+index+")").attr("href"));
+            elements.$img.attr("src", self.$gallery.children().get(index).attr("href"));
         }
 
-        elements.$btnNext.off('click').on('click', function(e) {
+        elements.$btnNext.off('click').on('click', function (e) {
             e.preventDefault();
             self.index++;
             if (self.index >= self.count) {
@@ -131,34 +133,34 @@
             updateImg(self.index);
         });
 
-        elements.$btnPrev.off('click').on('click', function(e) {
+        elements.$btnPrev.off('click').on('click', function (e) {
             e.preventDefault();
             self.index--;
             if (self.index < 0) {
-                self.index = self.count-1;
+                self.index = self.count - 1;
             }
             updateImg(self.index);
         });
 
-        elements.$container.off('click').on('click', function(e) {
+        elements.$container.off('click').on('click', function (e) {
             e.preventDefault();
             elements.$modal.modal('hide');
         });
 
-        elements.$closeBtn.off('click').on('click', function(e) {
+        elements.$closeBtn.off('click').on('click', function (e) {
             e.preventDefault();
             elements.$modal.modal('hide');
         });
 
-        elements.$wrapper.off('click').on('click', function(e) {
+        elements.$wrapper.off('click').on('click', function (e) {
             e.preventDefault();
             return false;
         });
     };
 
-    BootstrapGallery.prototype.registerKeys = function() {
+    BootstrapGallery.prototype.registerKeys = function () {
         var elements = this.elements;
-        elements.$modal.off('keydown').on('keydown', function(e){
+        elements.$modal.off('keydown').on('keydown', function (e) {
             // left arrow to go back
             if (e.keyCode == 37) {
                 elements.$btnPrev.click();
@@ -174,9 +176,9 @@
         });
     };
 
-    BootstrapGallery.prototype.registerWindowResize = function() {
+    BootstrapGallery.prototype.registerWindowResize = function () {
         var wrapper = this.elements.wrapper;
-        $(window).resize(function() {
+        $(window).resize(function () {
             wrapper.style.display = "none";
             wrapper.offsetHeight; // force browser to rerender modal.
             wrapper.style.display = "inline-block";
@@ -188,16 +190,16 @@
 
     var old = $.fn.bootstrapGallery;
 
-	$.fn.bootstrapGallery = function( options ) {
-        return this.each(function() {
+    $.fn.bootstrapGallery = function (options) {
+        return this.each(function () {
             var data = $(this).data('bs.Gallery');
             if (!data) {
                 $(this).data('bs.Gallery', (data = new BootstrapGallery($(this), options)));
             }
         });
-	};
+    };
 
-	$.fn.bootstrapGallery.Constructor = BootstrapGallery;
+    $.fn.bootstrapGallery.Constructor = BootstrapGallery;
 
     // BOOTSTRAPGALLERY NOCONFLICT
     // ===========================
