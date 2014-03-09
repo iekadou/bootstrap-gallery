@@ -1,5 +1,5 @@
 /*!
- * bootstrap-gallery v0.0.1 by @iekadou
+ * bootstrap-gallery v0.0.2 by @iekadou
  * Copyright (c) 2014 Jonas Braun
  *
  * http://www.noxic-action.de/page/programming/bootstrap-gallery
