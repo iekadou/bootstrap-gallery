@@ -22,11 +22,11 @@ A small, light, responsive Bootstrap Gallery
   ```
   css:
   ```html
-<link rel="stylesheet" type="text/css" href="bootstrap-gallery.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-gallery.min.css">
   ```
   or less:
   ```html
-<link rel="stylesheet/less" type="text/css" href="bootstrap-gallery.less">
+<link rel="stylesheet/less" type="text/css" href="less/bootstrap-gallery.less">
   ```
 
 2. code your gallery with markup like this
