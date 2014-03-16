@@ -1,5 +1,5 @@
 /*!
- * bootstrap-gallery v0.0.2 by @iekadou
+ * bootstrap-gallery v0.0.3 by @iekadou
  * Copyright (c) 2014 Jonas Braun
  *
  * http://www.noxic-action.de/page/programming/bootstrap-gallery
@@ -163,8 +163,8 @@
         this.$gallery.children().each(function () {
             $(this).off('click').on('click', function (e) {
                 e.preventDefault();
-                elements.$img.attr('src', $(this).attr("href"));
                 self.index = $(this).index();
+                self.updateImg(self.index);
                 elements.$modal.modal();
                 self.registerBtns();
 
@@ -195,15 +195,17 @@
 
     BootstrapGallery.prototype.registerWindowResize = function () {
         var wrapper = this.elements.wrapper;
+        var self = this;
         $(window).resize(function () {
             wrapper.style.display = "none";
             wrapper.offsetHeight; // force browser to rerender modal.
             wrapper.style.display = "inline-block";
+            self.elements.$img.css('max-height', parseInt(parseInt($(window).height())*0.9));
         });
     };
 
     BootstrapGallery.prototype.updateImg = function (index) {
-        this.elements.$img.attr("src", this.$gallery.children().get(index).getAttribute('href'));
+        this.elements.$img.attr("src", this.$gallery.children().get(index).getAttribute('href')).css('max-height', parseInt(parseInt($(window).height())*0.9));
     };
 
     // BOOTSTRAPGALLERY PLUGIN DEFINITION

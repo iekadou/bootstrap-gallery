@@ -1,5 +1,5 @@
 /*!
- * bootstrap-gallery v0.0.2 by @iekadou
+ * bootstrap-gallery v0.0.3 by @iekadou
  * Copyright (c) 2014 Jonas Braun
  *
  * http://www.noxic-action.de/page/programming/bootstrap-gallery
@@ -34,6 +34,7 @@
 }
 #gallery-modal .img-wrapper {
   max-height: 80%;
+  max-width: 100%;
   display: inline-block;
   position: relative;
 }
