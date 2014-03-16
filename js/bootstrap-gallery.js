@@ -1,5 +1,5 @@
 /*!
- * bootstrap-gallery v0.0.3 by @iekadou
+ * bootstrap-gallery v0.0.4 by @iekadou
  * Copyright (c) 2014 Jonas Braun
  *
  * http://www.noxic-action.de/page/programming/bootstrap-gallery
@@ -31,13 +31,15 @@
                 "$closeBtn": $("<button/>").attr(this.options.closeBtnAttrs),
                 "$btnPrev": $("<button/>").attr(this.options.btnPrevAttrs),
                 "$btnNext": $("<button/>").attr(this.options.btnNextAttrs),
-                "$img": $("<img/>").attr(this.options.imgAttrs)
+                "$img": $("<img/>").attr(this.options.imgAttrs),
+                "$indicator": $("<span/>").attr(this.options.indicatorAttrs)
             };
             elements["wrapper"] = elements.$wrapper[0];
 
-            elements.$wrapper.append(elements.$closeBtn, elements.$btnPrev, elements.$btnNext, elements.$img);
+            elements.$wrapper.append(elements.$closeBtn, elements.$btnPrev, elements.$btnNext, elements.$img, elements.$indicator);
             elements.$container.append(elements.$wrapper);
             elements.$modal.append(elements.$container);
+            elements.$indicator.css('display', 'none');
             $('body').append(elements.$modal);
             this.elements = elements;
             BootstrapGallery.elements = elements;
@@ -82,6 +84,9 @@
         btnNextAttrs: {
             "class": "btn-next glyphicon glyphicon-chevron-right"
         },
+        indicatorAttrs: {
+            "class": "indicator glyphicon glyphicon-refresh"
+        },
         swipeThreshold: 30
     };
 
@@ -95,6 +100,9 @@
         },
         btnNextAttrs: {
             "class": "btn-next fa fa-angle-right"
+        },
+        indicatorAttrs: {
+            "class": "indicator fa fa-refresh fa-spin"
         }
     };
 
@@ -205,7 +213,11 @@
     };
 
     BootstrapGallery.prototype.updateImg = function (index) {
-        this.elements.$img.attr("src", this.$gallery.children().get(index).getAttribute('href')).css('max-height', parseInt(parseInt($(window).height())*0.9));
+        var self = this;
+        self.elements.$indicator.css('display','inline-block');
+        self.elements.$img.attr("src", self.$gallery.children().get(index).getAttribute('href')).load(function() {
+            self.elements.$indicator.css('display','none');
+        }).css('max-height', parseInt(parseInt($(window).height())*0.9));
     };
 
     // BOOTSTRAPGALLERY PLUGIN DEFINITION

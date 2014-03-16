@@ -1,9 +1,9 @@
 /*!
- * bootstrap-gallery v0.0.3 by @iekadou
+ * bootstrap-gallery v0.0.4 by @iekadou
  * Copyright (c) 2014 Jonas Braun
  *
  * http://www.noxic-action.de/page/programming/bootstrap-gallery
  *
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/MIT
- */#gallery-modal button{font-size:100px;text-shadow:0 0 5px #000;opacity:.2;background:0;border:0;outline:0;color:#fff;position:absolute;top:0}#gallery-modal button:hover{opacity:.8}#gallery-modal .img-container{width:100%;max-height:90%;position:absolute;top:50%;left:50%;text-align:center;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}#gallery-modal .img-wrapper{max-height:80%;max-width:100%;display:inline-block;position:relative}#gallery-modal .img-wrapper img{max-height:100%;margin:auto}#gallery-modal .btn-close{right:0;font-size:50px;padding:10px 10px 5% 5%;z-index:3}#gallery-modal .btn-prev,#gallery-modal .btn-next{z-index:2;height:100%;width:40%}#gallery-modal .btn-prev{left:10px;text-align:left}#gallery-modal .btn-next{right:10px;text-align:right}
+ */#gallery-modal button{font-size:100px;text-shadow:0 0 5px #000;opacity:.2;background:0;border:0;outline:0;color:#fff;position:absolute;top:0}#gallery-modal button:hover{opacity:.8}#gallery-modal .img-container{width:100%;max-height:90%;position:absolute;top:50%;left:50%;text-align:center;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}#gallery-modal .img-wrapper{max-height:80%;max-width:100%;display:inline-block;position:relative}#gallery-modal .img-wrapper img{max-height:100%;margin:auto}#gallery-modal .btn-close{right:0;font-size:50px;padding:10px 10px 5% 5%;z-index:3}#gallery-modal .btn-prev,#gallery-modal .btn-next{z-index:2;height:100%;width:40%}#gallery-modal .btn-prev{left:10px;text-align:left}#gallery-modal .btn-next{right:10px;text-align:right}#gallery-modal .indicator{position:absolute;top:50%;left:50%;display:inline-block;color:#fff;width:100px;height:100px;margin-left:-50px;margin-top:-50px;font-size:100px;opacity:.8;text-shadow:0 0 5px #000}
