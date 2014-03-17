@@ -1,6 +1,11 @@
 # bootstrap-gallery changelog
 
-## 0.0.4 (2014-08-21)
+## master (2014-03-17)
+
+* Bugfix, Loading indicator shows up even if not loading on initial click.
+* Introducing option to decide whether controls are inside image or always at the same position
+
+## 0.0.4 (2014-03-16)
 
 * Adding loading indicator
 

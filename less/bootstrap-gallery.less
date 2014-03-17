@@ -34,6 +34,19 @@
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%); // IE9 only
     transform: translate(-50%, -50%);
+
+    img {
+      max-height: 100%;
+      margin: auto;
+      display: inline-block;
+    }
+    & > .btn-prev, & > .btn-next {
+      z-index: 2;
+      top: 50%;
+      margin-top: -75px;
+      height: 150px;
+      width: 150px;
+    }
   }
 
   .img-wrapper {
@@ -41,10 +54,10 @@
     max-width: 100%;
     display: inline-block;
     position: relative;
-
-    img {
-      max-height: 100%;
-      margin: auto;
+    & > .btn-prev, & > .btn-next {
+      z-index: 2;
+      height: 100%;
+      width: 40%;
     }
   }
 

@@ -27,19 +27,22 @@
             var elements = {
                 "$modal": $("<div/>").attr(this.options.modalAttrs),
                 "$container": $("<div/>").attr(this.options.containerAttrs),
-                "$wrapper": $("<div/>").attr(this.options.wrapperAttrs),
                 "$closeBtn": $("<button/>").attr(this.options.closeBtnAttrs),
                 "$btnPrev": $("<button/>").attr(this.options.btnPrevAttrs),
                 "$btnNext": $("<button/>").attr(this.options.btnNextAttrs),
                 "$img": $("<img/>").attr(this.options.imgAttrs),
                 "$indicator": $("<span/>").attr(this.options.indicatorAttrs)
             };
-            elements["wrapper"] = elements.$wrapper[0];
-
-            elements.$wrapper.append(elements.$closeBtn, elements.$btnPrev, elements.$btnNext, elements.$img, elements.$indicator);
-            elements.$container.append(elements.$wrapper);
+            // if you want controls to be outside to be on the same position for every image you dont need a imgwrapper
+            if (! (this.options.hasOwnProperty('controlsOutside') && this.options.controlsOutside == true)) {
+                elements["$wrapper"] = $("<div/>").attr(this.options.wrapperAttrs);
+                elements["wrapper"] = elements["$wrapper"][0];
+                elements.$wrapper.append(elements.$closeBtn, elements.$btnPrev, elements.$btnNext, elements.$img, elements.$indicator);
+                elements.$container.append(elements.$wrapper);
+            } else {
+                elements.$container.append(elements.$closeBtn, elements.$btnPrev, elements.$btnNext, elements.$img, elements.$indicator);
+            }
             elements.$modal.append(elements.$container);
-            elements.$indicator.css('display', 'none');
             $('body').append(elements.$modal);
             this.elements = elements;
             BootstrapGallery.elements = elements;
@@ -120,6 +123,7 @@
                 self.index = 0;
             }
             self.updateImg(self.index);
+            return false;
         });
 
         elements.$btnPrev.off('click').on('click', function (e) {
@@ -129,6 +133,7 @@
                 self.index = self.count - 1;
             }
             self.updateImg(self.index);
+            return false;
         });
 
         elements.$container.off('click').on('click', function (e) {
@@ -140,11 +145,21 @@
             e.preventDefault();
             elements.$modal.modal('hide');
         });
-
-        elements.$wrapper.off('click').on('click', function (e) {
-            e.preventDefault();
-            return false;
-        });
+        if (elements.hasOwnProperty('$wrapper')) {
+            elements.$container.off('click').on('click', function (e) {
+                e.preventDefault();
+                elements.$modal.modal('hide');
+            });
+            elements.$wrapper.off('click').on('click', function (e) {
+                e.preventDefault();
+                return false;
+            });
+        } else {
+            elements.$img.off('click').on('click', function (e) {
+                e.preventDefault();
+                return false;
+            });
+        }
     };
 
     BootstrapGallery.prototype.registerKeys = function () {
@@ -171,6 +186,7 @@
         this.$gallery.children().each(function () {
             $(this).off('click').on('click', function (e) {
                 e.preventDefault();
+                elements.$indicator.css('display', 'none');
                 self.index = $(this).index();
                 self.updateImg(self.index);
                 elements.$modal.modal();
@@ -202,22 +218,31 @@
     };
 
     BootstrapGallery.prototype.registerWindowResize = function () {
-        var wrapper = this.elements.wrapper;
         var self = this;
-        $(window).resize(function () {
-            wrapper.style.display = "none";
-            wrapper.offsetHeight; // force browser to rerender modal.
-            wrapper.style.display = "inline-block";
-            self.elements.$img.css('max-height', parseInt(parseInt($(window).height())*0.9));
-        });
+        if (self.elements.hasOwnProperty('$wrapper')) {
+            var wrapper = this.elements.wrapper;
+            $(window).resize(function () {
+                wrapper.style.display = "none";
+                wrapper.offsetHeight; // force browser to rerender modal.
+                wrapper.style.display = "inline-block";
+                self.elements.$img.css('max-height', parseInt(parseInt($(window).height())*0.9));
+            });
+        } else {
+            $(window).resize(function () {
+                self.elements.$img.css('max-height', parseInt(parseInt($(window).height())*0.9));
+            });
+        }
     };
 
     BootstrapGallery.prototype.updateImg = function (index) {
         var self = this;
-        self.elements.$indicator.css('display','inline-block');
-        self.elements.$img.attr("src", self.$gallery.children().get(index).getAttribute('href')).load(function() {
-            self.elements.$indicator.css('display','none');
-        }).css('max-height', parseInt(parseInt($(window).height())*0.9));
+        var newSrc = self.$gallery.children().get(index).getAttribute('href');
+        if (self.elements.$img.attr("src") != newSrc) {
+            self.elements.$indicator.css('display','inline-block');
+            self.elements.$img.attr("src", newSrc).load(function() {
+                self.elements.$indicator.css('display','none');
+            }).css('max-height', parseInt(parseInt($(window).height())*0.9));
+        }
     };
 
     // BOOTSTRAPGALLERY PLUGIN DEFINITION
