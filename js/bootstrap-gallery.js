@@ -1,5 +1,5 @@
 /*!
- * bootstrap-gallery v0.0.4 by @iekadou
+ * bootstrap-gallery v0.0.5 by @iekadou
  * Copyright (c) 2014 Jonas Braun
  *
  * http://www.noxic-action.de/page/programming/bootstrap-gallery
@@ -39,10 +39,11 @@
                 elements["wrapper"] = elements["$wrapper"][0];
                 elements.$wrapper.append(elements.$closeBtn, elements.$btnPrev, elements.$btnNext, elements.$img, elements.$indicator);
                 elements.$container.append(elements.$wrapper);
+                elements.$modal.append(elements.$container);
             } else {
-                elements.$container.append(elements.$closeBtn, elements.$btnPrev, elements.$btnNext, elements.$img, elements.$indicator);
+                elements.$container.append(elements.$btnPrev, elements.$btnNext, elements.$img, elements.$indicator);
+                elements.$modal.append(elements.$closeBtn, elements.$container);
             }
-            elements.$modal.append(elements.$container);
             $('body').append(elements.$modal);
             this.elements = elements;
             BootstrapGallery.elements = elements;
@@ -90,6 +91,7 @@
         indicatorAttrs: {
             "class": "indicator glyphicon glyphicon-refresh"
         },
+        indicatorThreshold: 100,
         swipeThreshold: 30
     };
 
@@ -238,9 +240,12 @@
         var self = this;
         var newSrc = self.$gallery.children().get(index).getAttribute('href');
         if (self.elements.$img.attr("src") != newSrc) {
-            self.elements.$indicator.css('display','inline-block');
+            self.elements.$indicator.delay(self.options.indicatorThreshold).queue(function(next){
+                $(this).css('display','inline-block');
+                next();
+            });
             self.elements.$img.attr("src", newSrc).load(function() {
-                self.elements.$indicator.css('display','none');
+                self.elements.$indicator.stop().css('display','none');
             }).css('max-height', parseInt(parseInt($(window).height())*0.9));
         }
     };

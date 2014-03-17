@@ -10,7 +10,7 @@ A small, light, responsive Bootstrap Gallery
 
 ## Installation
 
-* Download the latest release: [v0.0.4](https://github.com/iekadou/bootstrap-gallery/archive/0.0.4.zip)
+* Download the latest release: [v0.0.5](https://github.com/iekadou/bootstrap-gallery/archive/0.0.5.zip)
 
 ## Usage
 
@@ -69,24 +69,25 @@ BootstrapGallery.defaults = {
   wrapperAttrs: {
     "class": "img-wrapper"
   },
-	imgAttrs: {
-		"class": "img-responsive",
-		"src": "#"
-	},
-	closeBtnAttrs: {
-		"class": "btn-close glyphicon glyphicon-remove",
-		"aria-hidden": "true"
-	},
-	btnPrevAttrs: {
-		"class": "btn-prev glyphicon glyphicon-chevron-left"
-	},
-	btnNextAttrs: {
-		"class": "btn-next glyphicon glyphicon-chevron-right"
-	},
-    indicatorAttrs: {
-        "class": "indicator glyphicon glyphicon-refresh"
-    },
-	swipeThreshold: 30
+  imgAttrs: {
+    "class": "img-responsive",
+    "src": "#"
+  },
+  closeBtnAttrs: {
+    "class": "btn-close glyphicon glyphicon-remove",
+    "aria-hidden": "true"
+  },
+  btnPrevAttrs: {
+    "class": "btn-prev glyphicon glyphicon-chevron-left"
+  },
+  btnNextAttrs: {
+    "class": "btn-next glyphicon glyphicon-chevron-right"
+  },
+  indicatorAttrs: {
+    "class": "indicator glyphicon glyphicon-refresh"
+  },
+  indicatorThreshold: 100,
+  swipeThreshold: 30
 };
   ```
   
