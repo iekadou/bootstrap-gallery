@@ -5,7 +5,7 @@ A small, light, responsive Bootstrap Gallery
 
 ## Demo
 
-* http://www.noxic-action.de/page/photography/
+* http://www.iekadou.com/page/photography/
 
 
 ## Installation
