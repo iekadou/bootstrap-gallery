@@ -4,8 +4,8 @@ bootstrap-gallery
 A small, light, responsive Bootstrap Gallery
 
 ## Demo
-
-* http://www.iekadou.com/page/photography/
+* A clean demo can be found at: http://www.iekadou.com/programming/bootstrap-gallery/
+* A demo working together with jquery-justifyGallery can be found at: http://www.iekadou.com/photography/
 
 
 ## Installation
