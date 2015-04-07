@@ -4,13 +4,12 @@ bootstrap-gallery
 A small, light, responsive Bootstrap Gallery
 
 ## Demo
-* A clean demo can be found at: http://www.iekadou.com/programming/bootstrap-gallery/
-* A demo working together with jquery-justifyGallery can be found at: http://www.iekadou.com/photography/
 
+* http://www.iekadou.com/programming/bootstrap-gallery/
 
 ## Installation
 
-* Download the latest release: [v0.0.5](https://github.com/iekadou/bootstrap-gallery/archive/0.0.5.zip)
+* Download the latest release: [v0.0.6](https://github.com/iekadou/bootstrap-gallery/archive/0.0.6.zip)
 
 ## Usage
 
@@ -87,7 +86,8 @@ BootstrapGallery.defaults = {
     "class": "indicator glyphicon glyphicon-refresh"
   },
   indicatorThreshold: 100,
-  swipeThreshold: 30
+  swipeThreshold: 30,
+  caption: true
 };
   ```
   

@@ -1,8 +1,8 @@
 /*!
- * bootstrap-gallery v0.0.5 by @iekadou
- * Copyright (c) 2014 Jonas Braun
+ * bootstrap-gallery v0.0.6 by @iekadou
+ * Copyright (c) 2015 Jonas Braun
  *
- * http://www.noxic-action.de/page/programming/bootstrap-gallery
+ * http://www.iekadou.com/programming/bootstrap-gallery
  *
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/MIT
@@ -33,15 +33,26 @@
                 "$img": $("<img/>").attr(this.options.imgAttrs),
                 "$indicator": $("<span/>").attr(this.options.indicatorAttrs)
             };
+            if (this.options.caption) {
+                elements.$caption = $("<div/>").attr(this.options.captionAttrs)
+            }
             // if you want controls to be outside to be on the same position for every image you dont need a imgwrapper
             if (! (this.options.hasOwnProperty('controlsOutside') && this.options.controlsOutside == true)) {
                 elements["$wrapper"] = $("<div/>").attr(this.options.wrapperAttrs);
                 elements["wrapper"] = elements["$wrapper"][0];
-                elements.$wrapper.append(elements.$closeBtn, elements.$btnPrev, elements.$btnNext, elements.$img, elements.$indicator);
+                elements.$wrapper.append(elements.$closeBtn, elements.$btnPrev, elements.$btnNext, elements.$img);
+                if (this.options.caption) {
+                    elements.$wrapper.append(elements.$caption);
+                }
+                elements.$wrapper.append(elements.$indicator);
                 elements.$container.append(elements.$wrapper);
                 elements.$modal.append(elements.$container);
             } else {
-                elements.$container.append(elements.$btnPrev, elements.$btnNext, elements.$img, elements.$indicator);
+                elements.$container.append(elements.$btnPrev, elements.$btnNext, elements.$img);
+                if (this.options.caption) {
+                    elements.$container.append(elements.$caption);
+                }
+                elements.$container.append(elements.$indicator);
                 elements.$modal.append(elements.$closeBtn, elements.$container);
             }
             $('body').append(elements.$modal);
@@ -91,6 +102,10 @@
         indicatorAttrs: {
             "class": "indicator glyphicon glyphicon-refresh"
         },
+        captionAttrs: {
+            "class": "caption"
+        },
+        caption: true,
         indicatorThreshold: 100,
         swipeThreshold: 30
     };
@@ -239,13 +254,22 @@
     BootstrapGallery.prototype.updateImg = function (index) {
         var self = this;
         var newSrc = self.$gallery.children().get(index).getAttribute('href');
+        var title = $(self.$gallery.children().get(index)).children('img').attr('alt');
         if (self.elements.$img.attr("src") != newSrc) {
+            self.elements.$caption.css('display','none');
             self.elements.$indicator.delay(self.options.indicatorThreshold).queue(function(next){
                 $(this).css('display','inline-block');
                 next();
             });
             self.elements.$img.attr("src", newSrc).load(function() {
                 self.elements.$indicator.stop().css('display','none');
+                if (self.options.caption && title) {
+                    self.elements.$caption.text(title);
+                    self.elements.$caption.css('width',self.elements.$img.width());
+                    //initial resize could not fit the image correctly
+                    setTimeout(function() {self.elements.$caption.css('width',self.elements.$img.width());}, 250);
+                    self.elements.$caption.css('display','inline-block');
+                }
             }).css('max-height', parseInt(parseInt($(window).height())*0.9));
         }
     };

@@ -7,6 +7,102 @@
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/MIT
  */
+.bs-gallery-modal-mixin button {
+  font-size: 100px;
+  text-shadow: 0px 0px 5px #000;
+  opacity: 0.2;
+  background: none;
+  border: none;
+  outline: none;
+  color: #fff;
+  position: absolute;
+  top: 0px;
+}
+.bs-gallery-modal-mixin button:hover {
+  opacity: 0.8;
+}
+.bs-gallery-modal-mixin .img-container {
+  width: 100%;
+  max-height: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  top: 0 \0/;
+  left: 0 \0/;
+}
+.bs-gallery-modal-mixin .img-container img {
+  max-height: 100%;
+  margin: auto;
+  display: block;
+  position: relative \0/;
+  z-index: 1 \0/;
+}
+.bs-gallery-modal-mixin .img-container > .btn-prev,
+.bs-gallery-modal-mixin .img-container > .btn-next {
+  z-index: 2;
+  top: 50%;
+  margin-top: -75px;
+  height: 150px;
+  width: 150px;
+}
+.bs-gallery-modal-mixin .img-container .caption {
+  position: relative;
+  top: -40px;
+  display: none;
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 10px 20px;
+}
+.bs-gallery-modal-mixin .img-wrapper {
+  max-height: 80%;
+  max-width: 100%;
+  display: inline-block;
+  position: relative;
+}
+.bs-gallery-modal-mixin .img-wrapper > .btn-prev,
+.bs-gallery-modal-mixin .img-wrapper > .btn-next {
+  z-index: 2;
+  height: 100%;
+  width: 40%;
+}
+.bs-gallery-modal-mixin .btn-close {
+  right: 0px;
+  font-size: 50px;
+  padding: 10px 10px 5% 5%;
+  z-index: 3;
+}
+.bs-gallery-modal-mixin .btn-prev,
+.bs-gallery-modal-mixin .btn-next {
+  z-index: 2;
+  height: 100%;
+  width: 40%;
+}
+.bs-gallery-modal-mixin .btn-prev {
+  left: 10px;
+  text-align: left;
+}
+.bs-gallery-modal-mixin .btn-next {
+  right: 10px;
+  text-align: right;
+}
+.bs-gallery-modal-mixin .indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: inline-block;
+  color: #fff;
+  width: 100px;
+  height: 100px;
+  margin-left: -50px;
+  margin-top: -50px;
+  font-size: 100px;
+  opacity: 0.8;
+  text-shadow: 0px 0px 5px #000;
+  z-index: 0 \0/;
+}
 #gallery-modal button {
   font-size: 100px;
   text-shadow: 0px 0px 5px #000;
@@ -31,11 +127,15 @@
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  top: 0 \0/;
+  left: 0 \0/;
 }
 #gallery-modal .img-container img {
   max-height: 100%;
   margin: auto;
-  display: inline-block;
+  display: block;
+  position: relative \0/;
+  z-index: 1 \0/;
 }
 #gallery-modal .img-container > .btn-prev,
 #gallery-modal .img-container > .btn-next {
@@ -44,6 +144,13 @@
   margin-top: -75px;
   height: 150px;
   width: 150px;
+}
+#gallery-modal .img-container .caption {
+  position: relative;
+  top: -40px;
+  display: none;
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 10px 20px;
 }
 #gallery-modal .img-wrapper {
   max-height: 80%;
@@ -90,4 +197,5 @@
   font-size: 100px;
   opacity: 0.8;
   text-shadow: 0px 0px 5px #000;
+  z-index: 0 \0/;
 }

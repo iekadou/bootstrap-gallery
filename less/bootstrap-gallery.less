@@ -7,7 +7,10 @@
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/MIT
  */
-#gallery-modal {
+
+@ie8hack: ~"\0/";
+
+.bs-gallery-modal-mixin {
   button {
     font-size: 100px;
     text-shadow: 0px 0px 5px #000;
@@ -34,18 +37,31 @@
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%); // IE9 only
     transform: translate(-50%, -50%);
+    top: 0@ie8hack;
+    left: 0@ie8hack;
 
     img {
       max-height: 100%;
       margin: auto;
-      display: inline-block;
+      display: block;
+      position: relative@ie8hack;
+      z-index: 1@ie8hack;
     }
+
     & > .btn-prev, & > .btn-next {
       z-index: 2;
       top: 50%;
       margin-top: -75px;
       height: 150px;
       width: 150px;
+    }
+
+    .caption {
+      position: relative;
+      top: -40px;
+      display: none;
+      background-color: rgba(255,255,255,0.75);
+      padding: 10px 20px;
     }
   }
 
@@ -97,5 +113,10 @@
     font-size: 100px;
     opacity: 0.8;
     text-shadow: 0px 0px 5px #000;
+    z-index: 0@ie8hack;
   }
+}
+
+#gallery-modal {
+  .bs-gallery-modal-mixin();
 }
