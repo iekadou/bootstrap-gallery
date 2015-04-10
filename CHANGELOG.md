@@ -1,5 +1,15 @@
 # bootstrap-gallery changelog
 
+## 0.0.7 (2015-04-10)
+
+* fixing disabled caption bug
+* changing defaults to disabled captions
+
+## 0.0.6 (2015-04-09)
+
+* introducing caption functionality
+* defining bootstrap-gallery mixin in less
+
 ## 0.0.5 (2014-03-17)
 
 * only show Loading indicator if loading time is greater than options.indicatorThreshold

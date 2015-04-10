@@ -1,8 +1,8 @@
 /*!
- * bootstrap-gallery v0.0.6 by @iekadou
+ * bootstrap-gallery v0.0.7 by @iekadou
  * Copyright (c) 2015 Jonas Braun
  *
- * http://www.iekadou.com/programming/bootstrap-gallery
+ * http://iekadou.com/programming/bootstrap-gallery/
  *
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/MIT
@@ -105,9 +105,9 @@
         captionAttrs: {
             "class": "caption"
         },
-        caption: true,
         indicatorThreshold: 100,
-        swipeThreshold: 30
+        swipeThreshold: 30,
+        caption: false
     };
 
     BootstrapGallery.fontawesomeOptions = {
@@ -256,7 +256,9 @@
         var newSrc = self.$gallery.children().get(index).getAttribute('href');
         var title = $(self.$gallery.children().get(index)).children('img').attr('alt');
         if (self.elements.$img.attr("src") != newSrc) {
-            self.elements.$caption.css('display','none');
+            if (self.options.caption) {
+                self.elements.$caption.css('display', 'none');
+            }
             self.elements.$indicator.delay(self.options.indicatorThreshold).queue(function(next){
                 $(this).css('display','inline-block');
                 next();
