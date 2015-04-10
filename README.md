@@ -87,7 +87,7 @@ BootstrapGallery.defaults = {
   },
   indicatorThreshold: 100,
   swipeThreshold: 30,
-  caption: true
+  caption: false
 };
   ```
   
