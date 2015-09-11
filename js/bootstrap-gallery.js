@@ -17,7 +17,7 @@
     var BootstrapGallery = function (element, options) {
         this.$gallery = $(element);
         this.options = $.extend({}, BootstrapGallery.defaults);
-        if (options.hasOwnProperty('iconset') && options.iconset == 'fontawesome') {
+        if (options && options.hasOwnProperty('iconset') && options.iconset == 'fontawesome') {
             $.extend(this.options, BootstrapGallery.fontawesomeOptions);
         }
         $.extend(this.options, options);
