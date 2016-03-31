@@ -1,6 +1,6 @@
 /*!
- * bootstrap-gallery v0.0.7 by @iekadou
- * Copyright (c) 2015 Jonas Braun
+ * bootstrap-gallery v0.0.8 by @iekadou
+ * Copyright (c) 2015-2016 Jonas Braun
  *
  * http://iekadou.com/programming/bootstrap-gallery/
  *
@@ -107,7 +107,8 @@
         },
         indicatorThreshold: 100,
         swipeThreshold: 30,
-        caption: false
+        caption: false,
+        hideUnnecessaryIcons: true
     };
 
     BootstrapGallery.fontawesomeOptions = {
@@ -131,28 +132,33 @@
 
     BootstrapGallery.prototype.registerBtns = function () {
         var elements = this.elements;
+        var options = this.options;
         var self = this;
+        if (self.count < 2 && options.hideUnnecessaryIcons) {
+            elements.$btnNext.addClass('hide');
+            elements.$btnPrev.addClass('hide');
+        } else {
+            elements.$btnNext.off('click').on('click', function (e) {
+                e.preventDefault();
+                self.index++;
+                if (self.index >= self.count) {
+                    self.index = 0;
+                }
+                self.updateImg(self.index);
+                return false;
+            });
 
-        elements.$btnNext.off('click').on('click', function (e) {
-            e.preventDefault();
-            self.index++;
-            if (self.index >= self.count) {
-                self.index = 0;
-            }
-            self.updateImg(self.index);
-            return false;
-        });
+            elements.$btnPrev.off('click').on('click', function (e) {
+                e.preventDefault();
+                self.index--;
+                if (self.index < 0) {
+                    self.index = self.count - 1;
+                }
+                self.updateImg(self.index);
+                return false;
+            });
 
-        elements.$btnPrev.off('click').on('click', function (e) {
-            e.preventDefault();
-            self.index--;
-            if (self.index < 0) {
-                self.index = self.count - 1;
-            }
-            self.updateImg(self.index);
-            return false;
-        });
-
+        }
         elements.$container.off('click').on('click', function (e) {
             e.preventDefault();
             elements.$modal.modal('hide');
