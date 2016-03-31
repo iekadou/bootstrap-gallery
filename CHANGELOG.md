@@ -1,5 +1,9 @@
 # bootstrap-gallery changelog
 
+## 0.0.8 (2016-03-31)
+
+* introducing option to hide unnecessary arrows
+
 ## 0.0.7 (2015-04-10)
 
 * fixing disabled caption bug

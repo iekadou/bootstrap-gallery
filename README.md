@@ -9,7 +9,7 @@ A small, light, responsive Bootstrap Gallery
 
 ## Installation
 
-* Download the latest release: [v0.0.7](https://github.com/iekadou/bootstrap-gallery/archive/0.0.7.zip)
+* Download the latest release: [v0.0.8](https://github.com/iekadou/bootstrap-gallery/archive/0.0.8.zip)
 
 ## Usage
 
