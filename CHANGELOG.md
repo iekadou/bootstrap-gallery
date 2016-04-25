@@ -1,5 +1,10 @@
 # bootstrap-gallery changelog
 
+## 0.0.9 (2016-04-25)
+
+* bugfix on galleries with some titles set, some not
+* bugfix for not resizing caption wrapper on window resize
+
 ## 0.0.8 (2016-03-31)
 
 * introducing option to hide unnecessary arrows

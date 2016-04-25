@@ -1,5 +1,5 @@
 /*!
- * bootstrap-gallery v0.0.8 by @iekadou
+ * bootstrap-gallery v0.0.9 by @iekadou
  * Copyright (c) 2015-2016 Jonas Braun
  *
  * http://iekadou.com/programming/bootstrap-gallery/
@@ -271,12 +271,18 @@
             });
             self.elements.$img.attr("src", newSrc).load(function() {
                 self.elements.$indicator.stop().css('display','none');
-                if (self.options.caption && title) {
-                    self.elements.$caption.text(title);
-                    self.elements.$caption.css('width',self.elements.$img.width());
-                    //initial resize could not fit the image correctly
-                    setTimeout(function() {self.elements.$caption.css('width',self.elements.$img.width());}, 250);
-                    self.elements.$caption.css('display','inline-block');
+                if (self.options.caption) {
+                    if (title) {
+                        self.elements.$caption.text(title);
+                        self.elements.$caption.css('width',self.elements.$img.width());
+                        //initial resize could not fit the image correctly
+                        setTimeout(function() {self.elements.$caption.css('width', self.elements.$img.width());}, 250);
+                        $(window).on('resize:bootstrap_gallery', function (e) { self.elements.$caption.css('width', self.elements.$img.width()); });
+                        self.elements.$caption.css('display','inline-block');
+                    }
+                    else {
+                        self.elements.$caption.css('display', 'none');
+                    }
                 }
             }).css('max-height', parseInt(parseInt($(window).height())*0.9));
         }
