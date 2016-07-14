@@ -1,5 +1,9 @@
 # bootstrap-gallery changelog
 
+## 0.0.10 (2016-04-25)
+
+* bugfix caption may now appear in multiple lines
+
 ## 0.0.9 (2016-04-25)
 
 * bugfix on galleries with some titles set, some not

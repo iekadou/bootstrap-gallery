@@ -1,5 +1,5 @@
 /*!
- * bootstrap-gallery v0.0.9 by @iekadou
+ * bootstrap-gallery v0.0.10 by @iekadou
  * Copyright (c) 2015-2016 Jonas Braun
  *
  * http://iekadou.com/programming/bootstrap-gallery/
@@ -279,6 +279,7 @@
                         setTimeout(function() {self.elements.$caption.css('width', self.elements.$img.width());}, 250);
                         $(window).on('resize:bootstrap_gallery', function (e) { self.elements.$caption.css('width', self.elements.$img.width()); });
                         self.elements.$caption.css('display','inline-block');
+                        self.elements.$caption.css('top',self.elements.$caption.outerHeight()*-1);
                     }
                     else {
                         self.elements.$caption.css('display', 'none');
